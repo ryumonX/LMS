@@ -3,11 +3,6 @@ require '..\vendor\autoload.php'; // Load PhpSpreadsheet via Composer
 include('dbcon.php'); // Database connection
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
-$response = [
-    'success' => false,
-    'message' => 'An unknown error occurred.',
-    'redirect' => '' // Menambahkan URL untuk redirect jika diperlukan
-];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $method = $_POST['method'] ?? null;
@@ -19,19 +14,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $fn = $_POST['fn'] ?? null;
         $ln = $_POST['ln'] ?? null;
 
+        // Generate random password
+        $randomPassword = random_int(100000, 999999); // 6 digit nomor acak
+
         // Validate required fields
         if ($class_id && $un && $fn && $ln) {
-            $query = "INSERT INTO student (username, firstname, lastname, location, class_id, status) 
-                      VALUES ('$un', '$fn', '$ln', 'uploads/NO-IMAGE-AVAILABLE.jpg', '$class_id', 'Unregistered')";
+            $query = "INSERT INTO student (username, firstname, lastname, location, class_id, status, password) 
+                      VALUES ('$un', '$fn', '$ln', 'uploads/NO-IMAGE-AVAILABLE.jpg', '$class_id', 'Unregistered', '$randomPassword')";
             if (mysqli_query($conn, $query)) {
-                $response['success'] = true;
-                $response['message'] = 'Student added successfully.';
-                $response['redirect'] = 'students.php'; // Redirect ke halaman setelah sukses
+                echo "<script>
+                        alert('Student added successfully. Password: $randomPassword');
+                        window.location = 'students.php';
+                      </script>";
             } else {
-                $response['message'] = 'Database error: ' . mysqli_error($conn);
+                echo "<script>
+                        alert('Database error: " . mysqli_error($conn) . "');
+                      </script>";
             }
         } else {
-            $response['message'] = 'All fields are required.';
+            echo "<script>
+                    alert('All fields are required.');
+                  </script>";
         }
     } elseif ($method === 'import' && isset($_FILES['excel_file'])) {
         // Import from Excel
@@ -44,50 +47,48 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $successCount = 0;
             $errorCount = 0;
-            $errors = [];
 
             foreach ($data as $index => $row) {
                 if ($index == 0) continue; // Skip header row
 
                 // Read data from the row
-                $fn = trim($row[0] ?? ''); // Username
-                $ln = trim($row[1] ?? ''); // Firstname
-                $un = trim($row[2] ?? ''); // Lastname
+                $fn = trim($row[0] ?? ''); // Firstname
+                $ln = trim($row[1] ?? ''); // Lastname
+                $un = trim($row[2] ?? ''); // ID Number
                 $class_id = trim($row[3] ?? ''); // Class ID
+
+                // Generate random password
+                $randomPassword = random_int(100000, 999999); // 6 digit nomor acak
 
                 // Validate required fields
                 if (empty($un) || empty($fn) || empty($ln) || empty($class_id)) {
                     $errorCount++;
-                    $errors[] = "Row $index: Missing required fields.";
                     continue;
                 }
 
                 // Insert into the database
-                $query = "INSERT INTO student (username, firstname, lastname, location, class_id, status) 
-                          VALUES ('$un', '$fn', '$ln', 'uploads/NO-IMAGE-AVAILABLE.jpg', '$class_id', 'Unregistered')";
+                $query = "INSERT INTO student (username, firstname, lastname, location, class_id, status, password) 
+                          VALUES ('$un', '$fn', '$ln', 'uploads/NO-IMAGE-AVAILABLE.jpg', '$class_id', 'Unregistered', '$randomPassword')";
                 if (mysqli_query($conn, $query)) {
                     $successCount++;
                 } else {
                     $errorCount++;
-                    $errors[] = "Row $index: Database error - " . mysqli_error($conn);
                 }
             }
 
-            $response['success'] = true;
-            $response['message'] = "Import completed. Success: $successCount, Errors: $errorCount.";
-            if ($errorCount > 0) {
-                $response['errors'] = $errors; // Include detailed errors in the response
-            }
-            $response['redirect'] = 'students.php'; // Redirect ke halaman setelah sukses
+            echo "<script>
+                    alert('Import completed. Success: $successCount, Errors: $errorCount.');
+                    window.location = 'students.php';
+                  </script>";
         } catch (Exception $e) {
-            $response['message'] = 'Error reading the file: ' . $e->getMessage();
+            echo "<script>
+                    alert('Error reading file: " . $e->getMessage() . "');
+                  </script>";
         }
     } else {
-        $response['message'] = 'Invalid method selected.';
+        echo "<script>
+                alert('Invalid method selected.');
+              </script>";
     }
 }
-
-header('Content-Type: application/json');
-echo json_encode($response);
-
 ?>

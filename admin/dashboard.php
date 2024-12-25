@@ -20,7 +20,7 @@
 							        <div class="span12">
 						
 									<?php 
-								$query_reg_teacher = mysqli_query($conn,"select * from teacher where teacher_status = 'Registered' ")or die(mysqli_error());
+								$query_reg_teacher = mysqli_query($conn,"select * from teacher where teacher_status = 'Registered' ")or die(mysqli_error($conn));
 								$count_reg_teacher = mysqli_num_rows($query_reg_teacher);
 								?>
 								
@@ -32,7 +32,7 @@
                                 </div>
 								
 								<?php 
-								$query_teacher = mysqli_query($conn,"select * from teacher")or die(mysqli_error());
+								$query_teacher = mysqli_query($conn,"select * from teacher")or die(mysqli_error($conn));
 								$count_teacher = mysqli_num_rows($query_teacher);
 								?>
 								
@@ -45,7 +45,7 @@
                                 </div>
 								
 								<?php 
-								$query_student = mysqli_query($conn,"select * from student where status='Registered'")or die(mysqli_error());
+								$query_student = mysqli_query($conn,"select * from student where status='Registered'")or die(mysqli_error($conn));
 								$count_student = mysqli_num_rows($query_student);
 								?>
 								
@@ -58,7 +58,7 @@
 								
 								
 										<?php 
-								$query_student = mysqli_query($conn,"select * from student")or die(mysqli_error());
+								$query_student = mysqli_query($conn,"select * from student")or die(mysqli_error($conn));
 								$count_student = mysqli_num_rows($query_student);
 								?>
 								
@@ -75,7 +75,7 @@
 							
 								
 									<?php 
-								$query_class = mysqli_query($conn,"select * from class")or die(mysqli_error());
+								$query_class = mysqli_query($conn,"select * from class")or die(mysqli_error($conn));
 								$count_class = mysqli_num_rows($query_class);
 								?>
 								
@@ -88,7 +88,7 @@
 								
 								
 										<?php 
-								$query_file = mysqli_query($conn,"select * from files")or die(mysqli_error());
+								$query_file = mysqli_query($conn,"select * from files")or die(mysqli_error($conn));
 								$count_file = mysqli_num_rows($query_file);
 								?>
 								
@@ -101,7 +101,7 @@
 								
 								
 										<?php 
-								$query_subject = mysqli_query($conn,"select * from subject")or die(mysqli_error());
+								$query_subject = mysqli_query($conn,"select * from subject")or die(mysqli_error($conn));
 								$count_subject = mysqli_num_rows($query_subject);
 								?>
 								

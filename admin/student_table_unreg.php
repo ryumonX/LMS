@@ -21,16 +21,17 @@
 					<th></th>
 				
 					<th>Name</th>
-					<th>ID Number</th>
+					<th>Username</th>
+					<th>Password</th>
 			
-					<th>Course Yr & Section</th>
+					<th>Kelas & Jurusan</th>
 					<th></th>
 		</tr>
 		</thead>
 		<tbody>
 			
 		<?php
-	$query = mysqli_query($conn,"select * from student LEFT JOIN class ON student.class_id = class.class_id where status = 'Unregistered' ORDER BY student.student_id DESC") or die(mysqli_error());
+	$query = mysqli_query($conn,"select * from student LEFT JOIN class ON student.class_id = class.class_id where status = 'Unregistered' ORDER BY student.student_id DESC") or die(mysqli_error($conn));
 	while ($row = mysqli_fetch_array($query)) {
 		$id = $row['student_id'];
 		?>
@@ -42,6 +43,7 @@
 	
 		<td><?php echo $row['firstname'] . " " . $row['lastname']; ?></td> 
 		<td><?php echo $row['username']; ?></td> 
+		<td><?php echo $row['password'];?></td>
 	
 		<td width="100"><?php echo $row['class_name']; ?></td> 
 	

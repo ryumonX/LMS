@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Students</title>
     <link rel="stylesheet" href="path/to/bootstrap.css">
-    <script src="admin\vendors\flot\jquery.js"></script>
-    <script src="admin\bootstrap\js\bootstrap.js"></script>
-    <script src="admin\vendors\jGrowl\jquery.jgrowl.js"></script>
+    <script src="admin/vendors/flot/jquery.js"></script>
+    <script src="admin/bootstrap/js/bootstrap.js"></script>
+    <script src="admin/vendors/jGrowl/jquery.jgrowl.js"></script>
     <style>
         .hidden { display: none; }
     </style>
@@ -16,7 +16,7 @@
 <div class="row-fluid">
     <div class="block">
         <div class="navbar navbar-inner block-header">
-            <div class="muted pull-left">Add Students</div>
+            <div class="muted pull-left">Tambah Siswa</div>
         </div>
         <div class="block-content collapse in">
             <div class="span12">
@@ -26,17 +26,17 @@
                         <label>Select Mode:</label>
                         <div class="controls">
                             <label><input type="radio" name="method" value="manual" required> Manual</label>
-                            <label><input type="radio" name="method" value="import" required> Import</label>
+                            <label><input type="radio" name="method" value="import" required> Import Excel</label>
                         </div>
                     </div>
 
                     <!-- Manual Input Fields -->
                     <div id="manual_fields" class="hidden">
                         <div class="control-group">
-                            <label>Class</label>
+                            <label>Kelas</label>
                             <div class="controls">
                                 <select name="class_id" required>
-                                    <option value="">Select Class</option>
+                                    <option value="">Pilih Kelas</option>
                                     <?php
                                     include('dbcon.php');
                                     $stmt = $conn->prepare("SELECT class_id, class_name FROM class ORDER BY class_name");
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="control-group">
-                            <label>ID Number</label>
+                            <label>Username</label>
                             <div class="controls">
                                 <input name="un" type="text" class="form-control" placeholder="ID Number" required>
                             </div>
@@ -90,7 +90,7 @@
 
 <script>
     $(document).ready(function() {
-        // Fungsi ketika memilih mode (manual/import)
+        // Show/Hide fields based on selected method
         $('input[name="method"]').on('change', function() {
             const method = $(this).val();
 
@@ -98,20 +98,18 @@
                 $('#manual_fields').removeClass('hidden');
                 $('#import_fields').addClass('hidden');
 
-                // Mengaktifkan required untuk input manual
                 $('#manual_fields :input').prop('required', true);
                 $('#import_fields :input').prop('required', false);
             } else if (method === 'import') {
                 $('#import_fields').removeClass('hidden');
                 $('#manual_fields').addClass('hidden');
 
-                // Mengaktifkan required untuk input import
                 $('#import_fields :input').prop('required', true);
                 $('#manual_fields :input').prop('required', false);
             }
         });
 
-        // Fungsi untuk submit form
+        // Form submission
         $('#add_student_form').on('submit', function(e) {
             e.preventDefault();
 
@@ -123,19 +121,7 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
-                    try {
-                        const result = JSON.parse(response);
-                        if (result.success) {
-                            $.jGrowl(result.message, { header: 'Success' });
-                            setTimeout(function() {
-                                window.location.href = 'students.php'; // Redirect setelah sukses
-                            }, 2000); // Delay 2 detik sebelum redirect
-                        } else {
-                            $.jGrowl(result.message, { header: 'Error' });
-                        }
-                    } catch (error) {
-                        $.jGrowl('Invalid response from server.', { header: 'Error' });
-                    }
+                    $('body').html(response); // Load the response from PHP, including the redirect script
                 },
                 error: function() {
                     $.jGrowl('Failed to process the request.', { header: 'Error' });
@@ -144,6 +130,5 @@
         });
     });
 </script>
-
 </body>
 </html>
