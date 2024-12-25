@@ -81,8 +81,8 @@
                     <i class="icon-chevron-right"></i><i class="icon-envelope-alt"></i>&nbsp;Pesan
                 </a>
             </li>
-            <li class="<?php echo $currentPage === 'teacher_backpack.php' ? 'active' : ''; ?>">
-                <a href="teacher_backpack.php">
+            <li class="<?php echo $currentPage === 'teacher_backack.php' ? 'active' : ''; ?>">
+                <a href="teacher_backack.php">
                     <i class="icon-chevron-right"></i><i class="icon-suitcase"></i>&nbsp;Tas Guru
                 </a>
             </li>

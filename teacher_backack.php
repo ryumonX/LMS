@@ -4,19 +4,19 @@
 		<?php include('navbar_teacher.php'); ?>
         <div class="container-fluid">
             <div class="row-fluid">
-				<?php include('backpack_sidebar_teacher.php'); ?>
+				<?php include('teacher_sidebar.php'); ?>
                 <div class="span9" id="content">
                      <div class="row-fluid">
 					    <!-- breadcrumb -->	
 									<ul class="breadcrumb">
 										<?php
-										$school_year_query = mysqli_query($conn,"select * from school_year order by school_year DESC")or die(mysqli_error());
+										$school_year_query = mysqli_query($conn,"select * from school_year order by school_year DESC")or die(mysqli_error($conn));
 										$school_year_query_row = mysqli_fetch_array($school_year_query);
 										$school_year = $school_year_query_row['school_year'];
 										?>
-											<li><a href="#"><b>My Class</b></a><span class="divider">/</span></li>
-										<li><a href="#">School Year: <?php echo $school_year_query_row['school_year']; ?></a><span class="divider">/</span></li>
-										<li><a href="#"><b>Backpack</b></a></li>
+											<li><a href="#"><b>Kelas Saya</b></a><span class="divider">/</span></li>
+										<li><a href="#">Tahun Ajaran: <?php echo $school_year_query_row['school_year']; ?></a><span class="divider">/</span></li>
+										<li><a href="#"><b>Berkas</b></a></li>
 									</ul>
 						 <!-- end breadcrumb -->
                         <!-- block -->
@@ -27,12 +27,12 @@
                             <div class="block-content collapse in">
                                 <div class="span12">
 								<?php
-								$query_backpack = mysqli_query($conn,"select * FROM teacher_backpack where teacher_id = '$session_id'  order by fdatein DESC ")or die(mysqli_error());
+								$query_backpack = mysqli_query($conn,"select * FROM teacher_backpack where teacher_id = '$session_id'  order by fdatein DESC ")or die(mysqli_error($conn));
 								$num_row = mysqli_num_rows($query_backpack);
 								if ($num_row > 0){
 								?>
 									<div class="pull-right">
-												Check All <input type="checkbox"  name="selectAll" id="checkAll" />
+												Periksa Semua <input type="checkbox"  name="selectAll" id="checkAll" />
 												<script>
 												$("#checkAll").click(function () {
 													$('input:checkbox').not(this).prop('checked', this.checked);
@@ -46,15 +46,15 @@
 										<thead>
 										        <tr>
 												<th></th>
-												<th>Date Upload</th>
-												<th>File Name</th>
-												<th>Description</th>
+												<th>Tanggal Unggah</th>
+												<th>Nama File</th>
+												<th>Deskripsi</th>
 												<th></th>
 												</tr>
 										</thead>
 										<tbody>
                               		<?php
-										$query = mysqli_query($conn,"select * FROM teacher_backpack where teacher_id = '$session_id'  order by fdatein DESC")or die(mysqli_error());
+										$query = mysqli_query($conn,"select * FROM teacher_backpack where teacher_id = '$session_id'  order by fdatein DESC")or die(mysqli_error($conn));
 										while($row = mysqli_fetch_array($query)){
 										$id  = $row['file_id'];
 									?>                              
@@ -64,7 +64,7 @@
 										</td>
 										 <td><?php echo $row['fdatein']; ?></td>
                                          <td><?php  echo $row['fname']; ?></td>
-                                         <td><?php echo $row['fdesc']; ?></td>                                      
+                                         <td><?php echo $row['fdesc']; ?></td>                                      	
                                          <td width="30"><a href="<?php echo $row['floc']; ?>"><i class="icon-download icon-large"></i></a></td>                                      
 										</tr>
 									<?php } ?>
@@ -72,7 +72,7 @@
 									</table>
 									</form>
 									<?php }else{ ?>
-									<div class="alert alert-info"><i class="icon-info-sign"></i> No Files Inside Your Backpack.</div>
+									<div class="alert alert-info"><i class="icon-info-sign"></i> Tidak Ada File di Backpack Anda.</div>
 									<?php } ?>
                                 </div>
                             </div>
