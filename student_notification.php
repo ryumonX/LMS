@@ -66,10 +66,11 @@
                                             ") or die(mysqli_error($conn));
                                             $read_row = mysqli_fetch_array($query_yes_read);
 
-                                            $yes = $read_row['student_read'];
+                                            // Pastikan $read_row valid sebelum mengakses elemen array
+                                            $yes = $read_row ? $read_row['student_read'] : null;
                                             ?>
                                             <div class="post" id="del<?php echo $id; ?>">
-                                                <?php if ($yes != 'yes') { ?>
+                                                <?php if ($yes !== 'yes') { ?>
                                                     <input class="" name="selector[]" type="checkbox" value="<?php echo $id; ?>">
                                                 <?php } ?>
                                                 <strong><?php echo $row['firstname'] . " " . $row['lastname']; ?></strong>
