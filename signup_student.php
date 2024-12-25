@@ -16,7 +16,6 @@
 	<div class="row-fluid">
 		<div class="span12">
 			<div class="index-footer">
-				<?php include('link.php'); ?>
 			</div>
 		</div>
 	</div>
