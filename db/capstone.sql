@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2020 at 03:46 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.33
+-- Generation Time: Dec 26, 2024 at 08:46 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ CREATE TABLE `activity_log` (
   `username` varchar(100) NOT NULL,
   `date` varchar(100) NOT NULL,
   `action` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `activity_log`
@@ -49,7 +49,22 @@ INSERT INTO `activity_log` (`activity_log_id`, `username`, `date`, `action`) VAL
 (8, '', '2013-11-18 15:32:37', 'Add Subject IS 411B'),
 (9, '', '2013-11-18 15:34:54', 'Edit User jkev'),
 (10, 'jkev', '2014-01-17 13:26:18', 'Add User admin'),
-(11, 'admin', '2020-12-21 08:37:51', 'Add Subject 1234');
+(11, 'admin', '2020-12-21 08:37:51', 'Add Subject 1234'),
+(12, 'admin', '2024-12-26 14:29:05', 'Edit Subject RPL'),
+(13, 'admin', '2024-12-26 14:29:22', 'Edit Subject TKJ'),
+(14, 'admin', '2024-12-26 14:29:47', 'Edit Subject DKV'),
+(15, 'admin', '2024-12-26 14:31:25', 'Edit Subject PSPT'),
+(16, 'admin', '2024-12-26 14:32:29', 'Edit Subject MTK'),
+(17, 'admin', '2024-12-26 14:32:40', 'Edit Subject Inggris'),
+(18, 'admin', '2024-12-26 14:32:53', 'Edit Subject Indonesia'),
+(19, 'admin', '2024-12-26 14:33:18', 'Edit Subject P5'),
+(20, 'admin', '2024-12-26 14:33:26', 'Edit Subject Sunda'),
+(21, 'admin', '2024-12-26 14:33:37', 'Edit Subject Sunda'),
+(22, 'admin', '2024-12-26 14:35:04', 'Edit Subject PKN'),
+(23, 'admin', '2024-12-26 14:35:34', 'Edit Subject Agama'),
+(24, 'admin', '2024-12-26 14:35:39', 'Edit Subject Agama'),
+(25, 'admin', '2024-12-26 14:35:45', 'Edit Subject Agama'),
+(26, 'admin', '2024-12-26 14:36:04', 'Edit Subject Jepang ');
 
 -- --------------------------------------------------------
 
@@ -62,7 +77,7 @@ CREATE TABLE `answer` (
   `quiz_question_id` int(11) NOT NULL,
   `answer_text` varchar(100) NOT NULL,
   `choices` varchar(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `answer`
@@ -96,7 +111,7 @@ CREATE TABLE `assignment` (
   `teacher_id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
   `fname` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `assignment`
@@ -138,28 +153,44 @@ INSERT INTO `assignment` (`assignment_id`, `floc`, `fdatein`, `fdesc`, `teacher_
 CREATE TABLE `class` (
   `class_id` int(11) NOT NULL,
   `class_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `class`
 --
 
 INSERT INTO `class` (`class_id`, `class_name`) VALUES
-(7, 'BSIS-4A'),
-(8, 'BSIS-4B'),
-(12, 'BSIS-3A'),
-(13, 'BSIS-3B'),
-(14, 'BSIS-3C'),
-(15, 'BSIS-2A'),
-(16, 'BSIS-2B'),
-(17, 'BSIS-2C'),
-(18, 'BSIS-1A'),
-(19, 'BSIS-1B'),
-(20, 'BSIS-1C'),
-(21, 'BSED-1A'),
-(22, 'AB-1C'),
-(23, 'BSIT-2B'),
-(24, 'BSIT-1A');
+(12, 'X-RPL 1'),
+(13, 'X-RPL 2'),
+(14, 'X-RPL 3'),
+(15, 'X-DKV 1'),
+(16, 'X-DKV 3'),
+(17, 'X-DKV 4'),
+(18, 'X-PSPT'),
+(19, 'X-TKJ 1'),
+(20, 'X-TKJ 2'),
+(21, 'X-TKJ 3'),
+(25, 'XI-RPL 1'),
+(26, 'XI-RPL 2'),
+(27, 'XI-RPL 3'),
+(28, 'XI-DKV 1'),
+(29, 'XI- DKV 2'),
+(30, 'XI-DKV 3'),
+(31, 'XI-DKV 4'),
+(32, 'X1-TKJ 1'),
+(33, 'XI-TKJ 2'),
+(34, 'XI-TKJ 3'),
+(35, 'XI-PSPT'),
+(36, 'XII-RPL 1'),
+(37, 'XII-RPL 2'),
+(38, 'XII-DKV 1'),
+(39, 'XII-DKV 2'),
+(40, 'XII-DKV 3'),
+(41, 'XII-DKV 4'),
+(42, 'XII-TKJ 1'),
+(43, 'XII-TKJ 2'),
+(44, 'XII-TKJ 3'),
+(45, 'XII-PSPT');
 
 -- --------------------------------------------------------
 
@@ -172,7 +203,7 @@ CREATE TABLE `class_quiz` (
   `teacher_class_id` int(11) NOT NULL,
   `quiz_time` int(11) NOT NULL,
   `quiz_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `class_quiz`
@@ -195,7 +226,7 @@ CREATE TABLE `class_subject_overview` (
   `class_subject_overview_id` int(11) NOT NULL,
   `teacher_class_id` int(11) NOT NULL,
   `content` varchar(10000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `class_subject_overview`
@@ -214,7 +245,7 @@ CREATE TABLE `content` (
   `content_id` int(11) NOT NULL,
   `title` varchar(100) NOT NULL,
   `content` mediumtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `content`
@@ -245,17 +276,7 @@ CREATE TABLE `department` (
   `department_id` int(11) NOT NULL,
   `department_name` varchar(100) NOT NULL,
   `dean` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `department`
---
-
-INSERT INTO `department` (`department_id`, `department_name`, `dean`) VALUES
-(4, 'College of Industrial Technology', 'Dr. Antonio Deraja'),
-(5, 'School of Arts and Science', 'DR.'),
-(9, 'College of Education', 'null'),
-(10, 'Sample Department', 'DR. John Smith');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -269,7 +290,7 @@ CREATE TABLE `event` (
   `teacher_class_id` int(11) NOT NULL,
   `date_start` varchar(100) NOT NULL,
   `date_end` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `event`
@@ -299,7 +320,7 @@ CREATE TABLE `files` (
   `class_id` int(11) NOT NULL,
   `fname` varchar(100) NOT NULL,
   `uploaded_by` varchar(100) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `files`
@@ -344,7 +365,7 @@ CREATE TABLE `message` (
   `reciever_name` varchar(50) NOT NULL,
   `sender_name` varchar(200) NOT NULL,
   `message_status` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `message`
@@ -373,7 +394,7 @@ CREATE TABLE `message_sent` (
   `sender_id` int(11) NOT NULL,
   `reciever_name` varchar(100) NOT NULL,
   `sender_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `message_sent`
@@ -402,7 +423,7 @@ CREATE TABLE `notification` (
   `notification` varchar(100) NOT NULL,
   `date_of_notification` varchar(50) NOT NULL,
   `link` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `notification`
@@ -443,7 +464,7 @@ CREATE TABLE `notification_read` (
   `student_id` int(11) NOT NULL,
   `student_read` varchar(50) NOT NULL,
   `notification_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `notification_read`
@@ -467,7 +488,7 @@ CREATE TABLE `notification_read_teacher` (
   `teacher_id` int(11) NOT NULL,
   `student_read` varchar(100) NOT NULL,
   `notification_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `notification_read_teacher`
@@ -492,7 +513,7 @@ INSERT INTO `notification_read_teacher` (`notification_read_teacher_id`, `teache
 CREATE TABLE `question_type` (
   `question_type_id` int(11) NOT NULL,
   `question_type` varchar(150) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `question_type`
@@ -514,7 +535,7 @@ CREATE TABLE `quiz` (
   `quiz_description` varchar(100) NOT NULL,
   `date_added` varchar(100) NOT NULL,
   `teacher_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `quiz`
@@ -540,7 +561,7 @@ CREATE TABLE `quiz_question` (
   `points` int(11) NOT NULL,
   `date_added` varchar(100) NOT NULL,
   `answer` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `quiz_question`
@@ -563,7 +584,7 @@ INSERT INTO `quiz_question` (`quiz_question_id`, `quiz_id`, `question_text`, `qu
 CREATE TABLE `school_year` (
   `school_year_id` int(11) NOT NULL,
   `school_year` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `school_year`
@@ -588,7 +609,7 @@ CREATE TABLE `student` (
   `password` varchar(100) NOT NULL,
   `location` varchar(100) NOT NULL,
   `status` varchar(100) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `student`
@@ -720,7 +741,7 @@ CREATE TABLE `student_assignment` (
   `fname` varchar(50) NOT NULL,
   `student_id` int(11) NOT NULL,
   `grade` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `student_assignment`
@@ -742,7 +763,7 @@ CREATE TABLE `student_backpack` (
   `fdesc` varchar(100) NOT NULL,
   `student_id` int(11) NOT NULL,
   `fname` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `student_backpack`
@@ -766,7 +787,7 @@ CREATE TABLE `student_class_quiz` (
   `student_id` int(11) NOT NULL,
   `student_quiz_time` varchar(100) NOT NULL,
   `grade` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `student_class_quiz`
@@ -792,38 +813,21 @@ CREATE TABLE `subject` (
   `unit` int(11) NOT NULL,
   `Pre_req` varchar(100) NOT NULL,
   `semester` varchar(100) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `subject`
 --
 
 INSERT INTO `subject` (`subject_id`, `subject_code`, `subject_title`, `category`, `description`, `unit`, `Pre_req`, `semester`) VALUES
-(14, 'IS 411A', 'Senior Systems Project 1', '', '<p><span style=\"font-size: medium;\"><em>About the Subject</em></span></p>\r\n<p>This subject comprisea topics about systems development, SDLC methodologies, Conceptual Framework, diagrams such as DFD, ERD and Flowchart and writing a thesis proposal.</p>\r\n<p>&nbsp;</p>\r\n<p>The project requirement for this subject are:</p>\r\n<p>Chapters (1-5) Thesis Proposal</p>\r\n<p>100% Running System at the end of semester</p>\r\n<p>&nbsp;</p>', 3, '', ''),
-(15, 'IS 412', 'Effective Human Communication for IT Professional', '', '<p><span style=\"font-size: medium;\"><em>About the Subject</em></span></p>\r\n<p>This subject is intended for IT students to develop or enhance communication skills that will be beneficial especially when used in the business industry. The lesson includes Verbal Communication (Written and Oral), Non-verbal Communication, etc.</p>', 3, '', ''),
-(16, 'IS 311', 'Programming Languages', '', '<pre class=\"coursera-course-heading\" data-msg=\"coursera-course-about\"><span style=\"font-size: medium;\"><em>About the Subject</em></span></pre>\r\n<div class=\"coursera-course-detail\" data-user-generated=\"data-user-generated\">Learn many of the concepts that underlie all programming languages. Develop a programming style known as functional programming and contrast it with object-oriented programming. Through experience writing programs and studying three different languages, learn the key issues in designing and using programming languages, such as modularity and the complementary benefits of static and dynamic typing. This course is neither particularly theoretical nor just about programming specifics &ndash; it will give you a framework for understanding how to use language constructs effectively and how to design correct and elegant programs. By using different languages, you learn to think more deeply than in terms of the particular syntax of one language. The emphasis on functional programming is essential for learning how to write robust, reusable, composable, and elegant programs &ndash; in any language.</div>\r\n<h2 class=\"coursera-course-detail\" data-user-generated=\"data-user-generated\">&nbsp;</h2>\r\n<pre class=\"coursera-course-detail\" data-user-generated=\"data-user-generated\"><span style=\"font-size: medium;\"><em>&nbsp;Course Syllabus</em></span></pre>\r\n<div class=\"coursera-course-detail\" data-user-generated=\"data-user-generated\">\r\n<ul>\r\n<li>Syntax vs. semantics vs. idioms vs. libraries vs. tools</li>\r\n<li>ML basics (bindings, conditionals, records, functions)</li>\r\n<li>Recursive functions and recursive types</li>\r\n<li>Benefits of no mutation</li>\r\n<li>Algebraic datatypes, pattern matching</li>\r\n<li>Tail recursion</li>\r\n<li>First-class functions and function closures</li>\r\n<li>Lexical scope</li>\r\n<li>Equivalence and effects</li>\r\n<li>Parametric polymorphism and container types</li>\r\n<li>Type inference</li>\r\n<li>Abstract types and modules</li>\r\n<li>Racket basics</li>\r\n<li>Dynamic vs. static typing</li>\r\n<li>Implementing languages, especially higher-order functions</li>\r\n<li>Macro</li>\r\n<li>Ruby basics</li>\r\n<li>Object-oriented programming</li>\r\n<li>Pure object-orientation</li>\r\n<li>Implementing dynamic dispatch</li>\r\n<li>Multiple inheritance, interfaces, and mixins</li>\r\n<li>OOP vs. functional decomposition and extensibility</li>\r\n<li>Subtyping for records, functions, and objects</li>\r\n<li>Subtyping</li>\r\n<li>Class-based subtyping</li>\r\n<li>Subtyping vs. parametric polymorphism; bounded polymorphism</li>\r\n</ul>\r\n</div>', 3, '', ''),
-(17, 'IS 413', 'Introduction to the IM Professional and Ethics', '', '<p>This subject discusses about Ethics, E-Commerce, Cybercrime Law, Computer Security, etc.</p>', 0, '', ''),
-(22, 'IS 221', 'Application Development', '', '', 3, '', '2nd'),
-(23, 'IS 222', 'Network and Internet Technology', '', '', 3, '', '2nd'),
-(24, 'IS 223', 'Business Process', '', '', 3, '', '2nd'),
-(25, 'IS 224', 'Discrete Structures', '', '', 3, '', '2nd'),
-(26, 'IS 227', 'IS Programming 2', '', '', 3, '', '2nd'),
-(27, 'SS POL GOV', 'Politics and Governance with Philippine Constitution', '', '', 3, '', '2nd'),
-(28, 'LIT 1', 'Philippine  Literature', '', '', 3, '', '2nd'),
-(29, 'ACCTG 2', 'Fundamentals of Accounting 2', '', '', 3, '', '2nd'),
-(30, 'PE 4', 'Team Sports', '', '', 3, '', '2nd'),
-(31, 'IS 302', 'Survey of Programming Languages', '', '', 3, '', '2nd'),
-(32, 'IS 303', 'Structured Query Language', '', '', 3, '', '2nd'),
-(33, 'IS 321', 'Information System Planning', '', '', 3, '', '2nd'),
-(34, 'IS 322', 'Management of Technology', '', '', 3, '', '2nd'),
-(35, 'IS 323', 'E-commerce Strategy Architectural', '', '', 3, '', '2nd'),
-(36, 'IS 324', 'System Analysis and Design', '', '', 3, '', '2nd'),
-(37, 'Law 1', 'Law on Obligation and Contracts', '', '', 3, '', '2nd'),
-(38, 'Philo 1', 'Social Philosophy & Logic', '', '', 3, '', '2nd'),
-(39, 'MQTB', 'Quantitative Techniques in Business', '', '', 3, '', '2nd'),
-(40, 'RIZAL', 'Rizal: Life and Works', '', '<p>COURSE OUTLINE<br />\r\n1. Course Code : RIZAL</p>\r\n\r\n<p>2. Course Title &nbsp;: RIZAL (Rizal Life and Works)<br />\r\n3. Pre-requisite : none<br />\r\n5. Credit/ Class Schedule : 3 units; 3 hrs/week<br />\r\n6. Course Description&nbsp;<br />\r\n1. A critical analysis of Jose Rizal&rsquo;s life and ideas as reflected in his biography, his novels Noli Me Tangere and El Filibusterismo and in his other writings composed of essays and poems to provide the students a value based reference for reacting to certain ideas and behavior.<br />\r\n<br />\r\n<strong>PROGRAM OBJECTIVES</strong><br />\r\n1. To instill in the students human values and cultural refinement through the humanities and social sciences.<br />\r\n2. To inculcate high ethical standards in the students through its integration in the learning activities.<br />\r\n3. To have critical studies and discussions why Rizal is made the national hero of the Philippines.<br />\r\n<br />\r\nTOPICS:&nbsp;<br />\r\n1. A Hero is Born&nbsp;<br />\r\n2. Childhood Days in Calamba<br />\r\n3. School Days in Binan<br />\r\n4. Triumphs in the Ateneo<br />\r\n5. At the UST<br />\r\n6. In Spain<br />\r\n7. Paris to Berlin<br />\r\n8. Noli Me Tangere<br />\r\n9. Elias and Salome<br />\r\n10. Rizal&rsquo;s Tour of Europe with with Viola<br />\r\n11. Back to Calamba<br />\r\n12. HK, Macao and Japan<br />\r\n13. Rizal in Japan<br />\r\n14. Rizal in America<br />\r\n15. Life and Works in London<br />\r\n16. In Gay Paris<br />\r\n17. Rizal in Brussles<br />\r\n18. In Madrid<br />\r\n19. El Filibusterismo<br />\r\n20. In Hong Kong<br />\r\n21. Exile in Dapitan<br />\r\n22. The Trial of Rizal<br />\r\n23. Martyrdom at Bagumbayan<br />\r\n<br />\r\nTextbook and References:<br />\r\n1. Rizal&rsquo;s Life, Works and Writings (The Centennial Edition) by: Gregorio F. Zaide<br />\r\nand Sonia M. Zaide Quezon City, 1988. All Nations Publishing Co.<br />\r\n2. Coates, Austin. Rizal: First Filipino Nationalist and Martyr, Quezon City, UP Press 1999.<br />\r\n3. Constantino, Renato. Veneration Without Understanding. Quezon City, UP Press Inc., 2001.<br />\r\n4. Dela Cruz, W. &amp; Zulueta, M. Rizal: Buhay at Kaisipan. Manila, NBS Publications 2002.<br />\r\n5. Ocampo, Ambeth. Rizal Without the Overcoat (New Edition). Pasig City, anvil Publishing House 2002.<br />\r\n6. Odullo-de Guzman, Maria. Noli Me Tangere and El Filibusterismo. Manila, NBS Publications 1998.<br />\r\n7. Palma, Rafael. Rizal: The Pride of the Malay Race. Manila, Saint Anthony Company 2000.<br />\r\n8.Romero, M.C. &amp; Sta Roman, J. Rizal &amp; the Development of Filipino Consciousness (Third Edition). Manila, JMC Press Inc., 2001.<br />\r\n<br />\r\nCourse Evaluation:<br />\r\n<br />\r\n1. Quizzes : 30 %<br />\r\n2. Exams : 40 %<br />\r\n3. Class Standing : 20 %<br />\r\n- recitation<br />\r\n- attendance<br />\r\n- behavior<br />\r\n4. Final Grade<br />\r\n- 40 % previous grade<br />\r\n- 60 % current grade</p>\r\n', 3, '', '2nd'),
-(41, 'IS 411B', 'Senior Systems Project 2', '', '', 3, '', '2nd'),
-(42, '1234', 'Sample Subject', '', '<p>Sample Only</p>\r\n', 3, '', '1st');
+(14, 'Inggris', 'Bahasa Inggris', '', '<p><span style=\"font-size:medium\"><em>About the Subject</em></span></p>\r\n\r\n<p>This subject comprisea topics about systems development, SDLC methodologies, Conceptual Framework, diagrams such as DFD, ERD and Flowchart and writing a thesis proposal.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>The project requirement for this subject are:</p>\r\n\r\n<p>Chapters (1-5) Thesis Proposal</p>\r\n\r\n<p>100% Running System at the end of semester</p>\r\n\r\n<p>&nbsp;</p>\r\n', 3, '', ''),
+(15, 'MTK', 'Matematika', '', '<p><span style=\"font-size:medium\"><em>About the Subject</em></span></p>\r\n\r\n<p>This subject is intended for IT students to develop or enhance communication skills that will be beneficial especially when used in the business industry. The lesson includes Verbal Communication (Written and Oral), Non-verbal Communication, etc.</p>\r\n', 3, '', ''),
+(16, 'Indonesia', 'Bahasa Indonesia', '', '<pre>\r\n<span style=\"font-size:medium\"><em>About the Subject</em></span></pre>\r\n\r\n<div class=\"coursera-course-detail\">Learn many of the concepts that underlie all programming languages. Develop a programming style known as functional programming and contrast it with object-oriented programming. Through experience writing programs and studying three different languages, learn the key issues in designing and using programming languages, such as modularity and the complementary benefits of static and dynamic typing. This course is neither particularly theoretical nor just about programming specifics &ndash; it will give you a framework for understanding how to use language constructs effectively and how to design correct and elegant programs. By using different languages, you learn to think more deeply than in terms of the particular syntax of one language. The emphasis on functional programming is essential for learning how to write robust, reusable, composable, and elegant programs &ndash; in any language.</div>\r\n\r\n<h2>&nbsp;</h2>\r\n\r\n<pre>\r\n<span style=\"font-size:medium\"><em>&nbsp;Course Syllabus</em></span></pre>\r\n\r\n<div class=\"coursera-course-detail\">\r\n<ul>\r\n	<li>Syntax vs. semantics vs. idioms vs. libraries vs. tools</li>\r\n	<li>ML basics (bindings, conditionals, records, functions)</li>\r\n	<li>Recursive functions and recursive types</li>\r\n	<li>Benefits of no mutation</li>\r\n	<li>Algebraic datatypes, pattern matching</li>\r\n	<li>Tail recursion</li>\r\n	<li>First-class functions and function closures</li>\r\n	<li>Lexical scope</li>\r\n	<li>Equivalence and effects</li>\r\n	<li>Parametric polymorphism and container types</li>\r\n	<li>Type inference</li>\r\n	<li>Abstract types and modules</li>\r\n	<li>Racket basics</li>\r\n	<li>Dynamic vs. static typing</li>\r\n	<li>Implementing languages, especially higher-order functions</li>\r\n	<li>Macro</li>\r\n	<li>Ruby basics</li>\r\n	<li>Object-oriented programming</li>\r\n	<li>Pure object-orientation</li>\r\n	<li>Implementing dynamic dispatch</li>\r\n	<li>Multiple inheritance, interfaces, and mixins</li>\r\n	<li>OOP vs. functional decomposition and extensibility</li>\r\n	<li>Subtyping for records, functions, and objects</li>\r\n	<li>Subtyping</li>\r\n	<li>Class-based subtyping</li>\r\n	<li>Subtyping vs. parametric polymorphism; bounded polymorphism</li>\r\n</ul>\r\n</div>\r\n', 3, '', ''),
+(17, 'P5', 'Projek Penguatan Profil Pelajar Pancasila', '', '<p>This subject discusses about Ethics, E-Commerce, Cybercrime Law, Computer Security, etc.</p>\r\n', 0, '', ''),
+(28, 'Sunda', 'Bahasa Sunda', '', '', 3, '', '2nd'),
+(29, 'PKN', 'Pendidikan Kewarganegaraan', '', '', 3, '', '2nd'),
+(30, 'Agama', 'Agama', '', '', 3, '', '2nd'),
+(31, 'Jepang ', 'Bahasa Jepang', '', '', 3, '', '2nd');
 
 -- --------------------------------------------------------
 
@@ -842,7 +846,7 @@ CREATE TABLE `teacher` (
   `about` varchar(500) NOT NULL,
   `teacher_status` varchar(20) NOT NULL,
   `teacher_stat` varchar(100) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `teacher`
@@ -873,7 +877,7 @@ CREATE TABLE `teacher_backpack` (
   `fdesc` varchar(100) NOT NULL,
   `teacher_id` int(11) NOT NULL,
   `fname` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -888,7 +892,7 @@ CREATE TABLE `teacher_class` (
   `subject_id` int(11) NOT NULL,
   `thumbnails` varchar(100) NOT NULL,
   `school_year` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `teacher_class`
@@ -935,7 +939,7 @@ CREATE TABLE `teacher_class_announcements` (
   `teacher_id` varchar(100) NOT NULL,
   `teacher_class_id` int(11) NOT NULL,
   `date` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `teacher_class_announcements`
@@ -964,7 +968,7 @@ CREATE TABLE `teacher_class_student` (
   `teacher_class_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
   `teacher_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `teacher_class_student`
@@ -1290,7 +1294,7 @@ CREATE TABLE `teacher_notification` (
   `link` varchar(100) NOT NULL,
   `student_id` int(11) NOT NULL,
   `assignment_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `teacher_notification`
@@ -1315,7 +1319,7 @@ CREATE TABLE `teacher_shared` (
   `fdatein` varchar(100) NOT NULL,
   `fdesc` varchar(100) NOT NULL,
   `fname` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `teacher_shared`
@@ -1336,7 +1340,7 @@ CREATE TABLE `users` (
   `password` varchar(100) NOT NULL,
   `firstname` varchar(100) NOT NULL,
   `lastname` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `users`
@@ -1359,7 +1363,7 @@ CREATE TABLE `user_log` (
   `login_date` varchar(30) NOT NULL,
   `logout_date` varchar(30) NOT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `user_log`
@@ -1431,26 +1435,32 @@ INSERT INTO `user_log` (`user_log_id`, `username`, `login_date`, `logout_date`, 
 (63, 'jkev', '2014-01-16 14:42:02', '2014-02-13 11:19:36', 14),
 (64, 'jkev', '2014-01-17 09:16:17', '2014-02-13 11:19:36', 14),
 (65, 'jkev', '2014-01-17 13:25:51', '2014-02-13 11:19:36', 14),
-(66, 'admin', '2014-01-17 14:41:30', '2020-12-21 08:48:16', 15),
-(67, 'admin', '2014-01-17 15:56:32', '2020-12-21 08:48:16', 15),
-(68, 'admin', '2014-01-26 17:45:31', '2020-12-21 08:48:16', 15),
-(69, 'admin', '2014-02-13 10:45:17', '2020-12-21 08:48:16', 15),
-(70, 'admin', '2014-02-13 11:05:27', '2020-12-21 08:48:16', 15),
+(66, 'admin', '2014-01-17 14:41:30', '2024-12-25 19:39:25', 15),
+(67, 'admin', '2014-01-17 15:56:32', '2024-12-25 19:39:25', 15),
+(68, 'admin', '2014-01-26 17:45:31', '2024-12-25 19:39:25', 15),
+(69, 'admin', '2014-02-13 10:45:17', '2024-12-25 19:39:25', 15),
+(70, 'admin', '2014-02-13 11:05:27', '2024-12-25 19:39:25', 15),
 (71, 'jkev', '2014-02-13 11:16:48', '2014-02-13 11:19:36', 14),
-(72, 'admin', '2014-02-13 11:55:36', '2020-12-21 08:48:16', 15),
-(73, 'admin', '2014-02-13 12:32:38', '2020-12-21 08:48:16', 15),
-(74, 'admin', '2014-02-13 12:52:05', '2020-12-21 08:48:16', 15),
-(75, 'admin', '2014-02-13 13:04:35', '2020-12-21 08:48:16', 15),
+(72, 'admin', '2014-02-13 11:55:36', '2024-12-25 19:39:25', 15),
+(73, 'admin', '2014-02-13 12:32:38', '2024-12-25 19:39:25', 15),
+(74, 'admin', '2014-02-13 12:52:05', '2024-12-25 19:39:25', 15),
+(75, 'admin', '2014-02-13 13:04:35', '2024-12-25 19:39:25', 15),
 (76, 'jkev', '2014-02-13 14:35:27', '', 14),
-(77, 'admin', '2014-02-20 09:40:39', '2020-12-21 08:48:16', 15),
-(78, 'admin', '2014-02-20 09:42:21', '2020-12-21 08:48:16', 15),
-(79, 'admin', '2014-02-27 22:40:15', '2020-12-21 08:48:16', 15),
-(80, 'admin', '2014-02-28 13:12:52', '2020-12-21 08:48:16', 15),
-(81, 'admin', '2014-04-02 17:27:47', '2020-12-21 08:48:16', 15),
-(82, 'admin', '2014-04-03 15:29:38', '2020-12-21 08:48:16', 15),
-(83, 'admin', '2014-06-15 12:31:51', '2020-12-21 08:48:16', 15),
-(84, 'Admin', '2020-12-21 08:32:51', '2020-12-21 08:48:16', 15),
-(85, 'admin', '2020-12-21 08:48:23', '', 15);
+(77, 'admin', '2014-02-20 09:40:39', '2024-12-25 19:39:25', 15),
+(78, 'admin', '2014-02-20 09:42:21', '2024-12-25 19:39:25', 15),
+(79, 'admin', '2014-02-27 22:40:15', '2024-12-25 19:39:25', 15),
+(80, 'admin', '2014-02-28 13:12:52', '2024-12-25 19:39:25', 15),
+(81, 'admin', '2014-04-02 17:27:47', '2024-12-25 19:39:25', 15),
+(82, 'admin', '2014-04-03 15:29:38', '2024-12-25 19:39:25', 15),
+(83, 'admin', '2014-06-15 12:31:51', '2024-12-25 19:39:25', 15),
+(84, 'Admin', '2020-12-21 08:32:51', '2024-12-25 19:39:25', 15),
+(85, 'admin', '2020-12-21 08:48:23', '2024-12-25 19:39:25', 15),
+(86, 'teph', '2024-12-25 14:06:09', '', 13),
+(87, 'admin', '2024-12-25 19:36:59', '2024-12-25 19:39:25', 15),
+(88, 'admin', '2024-12-25 19:37:00', '2024-12-25 19:39:25', 15),
+(89, 'admin', '2024-12-25 19:38:53', '2024-12-25 19:39:25', 15),
+(90, 'admin', '2024-12-25 19:41:18', '', 15),
+(91, 'admin', '2024-12-26 14:18:01', '', 15);
 
 --
 -- Indexes for dumped tables
@@ -1662,7 +1672,7 @@ ALTER TABLE `user_log`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `activity_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `activity_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `answer`
@@ -1680,7 +1690,7 @@ ALTER TABLE `assignment`
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `class_quiz`
@@ -1848,7 +1858,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_log`
 --
 ALTER TABLE `user_log`
-  MODIFY `user_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `user_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
