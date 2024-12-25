@@ -47,7 +47,7 @@
 								<?php
 								} else {
 								?>
-									<div class="table-responsive" style="padding: 15px;">
+									<div class="table-responsive" style="padding: 15px; max-height: 300px; overflow-y: auto; overflow-x: auto;">
 										<table class="table table-striped table-bordered">
 											<thead class="thead-dark">
 												<tr>

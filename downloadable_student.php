@@ -62,8 +62,8 @@
 									<form action="copy_file_student.php" method="post">
 										<a data-toggle="modal" href="#user_delete" id="delete" class="btn btn-info" name=""><i class="icon-copy"></i> Salin item yang dipilih ke tas</a>
 										<?php include('copy_to_backpack_modal.php'); ?>
-										<div style="overflow-x: auto;">
-											<table cellpadding="0" cellspacing="0" border="0" class="table" id="">
+										<div style="max-height: 300px; overflow-y: auto; overflow-x: auto;">
+											<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-striped" id="">
 												<thead>
 													<tr>
 														<th></th>

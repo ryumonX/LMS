@@ -16,7 +16,7 @@
                         LEFT JOIN class ON class.class_id = teacher_class.class_id
                         LEFT JOIN subject ON subject.subject_id = teacher_class.subject_id
                         WHERE teacher_class_id = '$get_id'"
-                    ) or die(mysqli_error($conn)); // Memastikan argumen $conn digunakan
+                    ) or die(mysqli_error($conn));
                     $class_row = mysqli_fetch_array($class_query);
                     ?>
 
@@ -40,21 +40,23 @@
                                     "SELECT * FROM teacher_class_announcements
                                     WHERE teacher_class_id = '$get_id' 
                                     ORDER BY date DESC"
-                                ) or die(mysqli_error($conn)); // Memastikan argumen $conn digunakan
+                                ) or die(mysqli_error($conn));
                                 $count = mysqli_num_rows($query_announcement);
                                 if ($count > 0) {
+                                ?>
+                                <div class="scrollable-content" style="max-height: 300px; overflow-y: auto; padding-right: 10px;">
+                                    <?php
                                     while ($row = mysqli_fetch_array($query_announcement)) {
                                         $id = $row['teacher_class_announcements_id'];
-                                ?>
-
-                                <div class="post" id="del<?php echo $id; ?>">
-                                    <?php echo $row['content']; ?>
-                                    <hr>
-                                    <strong><i class="icon-calendar"></i> <?php echo $row['date']; ?></strong>
+                                    ?>
+                                    <div class="post" id="del<?php echo $id; ?>">
+                                        <?php echo $row['content']; ?>
+                                        <hr>
+                                        <strong><i class="icon-calendar"></i> <?php echo $row['date']; ?></strong>
+                                    </div>
+                                    <?php } ?>
                                 </div>
-
                                 <?php 
-                                    }
                                 } else { 
                                 ?>
                                 <div class="alert alert-info">
