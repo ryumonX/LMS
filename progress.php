@@ -101,9 +101,9 @@
                                 <table cellpadding="0" cellspacing="0" border="0" class="table" id="">
                                     <thead>
                                         <tr>
-                                            <th>Judul Quiz</th>
+                                            <th>Judul</th>
                                             <th>Deskripsi</th>
-                                            <th>Waktu Quiz (Menit)</th>
+                                            <th>Durasi</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -120,19 +120,22 @@
 
                                             $query1 = mysqli_query($conn, "SELECT * FROM student_class_quiz WHERE class_quiz_id = '$id' AND student_id = '$session_id'") or die(mysqli_error($conn));
                                             $row1 = mysqli_fetch_array($query1);
-                                            $grade = $row1['grade'];
+
+                                            $grade = isset($row1['grade']) ? $row1['grade'] : null;
+
+                                            if (!is_null($grade)) {
                                         ?>
-                                            <?php if ($grade != "") { ?>
                                                 <tr>
                                                     <td><?php echo $row['quiz_title']; ?></td>
                                                     <td><?php echo $row['quiz_description']; ?></td>
-                                                    <td><?php echo $row['quiz_time'] / 60; ?></td>
+                                                    <td><?php echo $row['quiz_time'] / 60; ?> menit</td>
                                                     <td width="200">
                                                         <b>Nilai yang Sudah Diperoleh: <?php echo $grade; ?></b>
                                                     </td>
                                                 </tr>
-                                            <?php } ?>
-                                        <?php } ?>
+                                        <?php
+                                            }
+                                        } ?>
                                     </tbody>
                                 </table>
                             </div>
