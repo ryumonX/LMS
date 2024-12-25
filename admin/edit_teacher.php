@@ -44,7 +44,8 @@
 										</td>
                                     <td width="40"><img class="img-rounded" src="<?php echo $row['location']; ?>" height="50" width="50"></td> 
                                     <td><?php echo $row['firstname'] . " " . $row['lastname']; ?></td> 
-                                    <td><?php echo $row['username']; ?></td> 
+                                    <td><?php echo $row['username']; ?></td>
+                                     
                                
 									<td width="30"><a href="edit_teacher.php<?php echo '?id='.$id; ?>" class="btn btn-success"><i class="icon-pencil"></i></a></td>
                                 </tr>
