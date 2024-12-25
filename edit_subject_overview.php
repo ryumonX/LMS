@@ -6,7 +6,7 @@
 		<?php include('navbar_teacher.php'); ?>
         <div class="container-fluid">
             <div class="row-fluid">
-				<?php include('subject_overview_link.php'); ?>
+				<?php include('class_sidebar.php'); ?>
                 <div class="span9" id="content">
                      <div class="row-fluid">
 					  <!-- breadcrumb -->
@@ -14,7 +14,7 @@
 										<?php $class_query = mysqli_query($conn,"select * from teacher_class
 										LEFT JOIN class ON class.class_id = teacher_class.class_id
 										LEFT JOIN subject ON subject.subject_id = teacher_class.subject_id
-										where teacher_class_id = '$get_id'")or die(mysqli_error());
+										where teacher_class_id = '$get_id'")or die(mysqli_error($conn));
 										$class_row = mysqli_fetch_array($class_query);
 										?>
 				
@@ -35,7 +35,7 @@
                             <div class="block-content collapse in">
                                 <div class="span12">
 								<?php 
-								$subject_query = mysqli_query($conn,"select * from class_subject_overview where  class_subject_overview_id  = '$subject_id'")or die(mysqli_error());
+								$subject_query = mysqli_query($conn,"select * from class_subject_overview where  class_subject_overview_id  = '$subject_id'")or die(mysqli_error($conn));
 								$subject_row = mysqli_fetch_array($subject_query);
 								?>
 														<form class="form-horizontal" method="post">
@@ -55,7 +55,7 @@
 										<?php
 										if (isset($_POST['save'])){
 										$content = $_POST['content'];
-										mysqli_query($conn,"update class_subject_overview set content = '$content' where class_subject_overview_id = '$subject_id'")or die(mysqli_error());
+										mysqli_query($conn,"update class_subject_overview set content = '$content' where class_subject_overview_id = '$subject_id'")or die(mysqli_error($conn));
 										?>
 										<script>
 											window.location = 'subject_overview.php<?php echo '?id='.$get_id; ?>';
