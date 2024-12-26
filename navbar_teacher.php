@@ -17,7 +17,7 @@
 																<li>
 																	<a href="change_password_teacher.php"><i class="icon-circle"></i> Change Password</a>
 																	<a tabindex="-1" href="#myModal" data-toggle="modal"><i class="icon-picture"></i> Change Avatar</a>
-																	<a tabindex="-1" href="profile_teacher.php"><i class="icon-user"></i> Profile</a>
+																	<!-- <a tabindex="-1" href="profile_teacher.php"><i class="icon-user"></i> Profile</a> -->
 																</li>
 																<li class="divider"></li>
 																<li><a tabindex="-1" href="logout.php"><i class="icon-signout"></i>&nbsp;Logout</a></li>
