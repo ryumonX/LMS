@@ -40,7 +40,7 @@
 						success: function(html){
 						if(html=='true')
 						{
-						$.jGrowl("Welcome to CHMSC Learning Management System", { header: 'Sign up Success' });
+						$.jGrowl("Welcome to INFOKOM Learning Management System", { header: 'Sign up Success' });
 						var delay = 2000;
 							setTimeout(function(){ window.location = 'dashboard_student.php'  }, delay);  
 						}else if(html=='false'){

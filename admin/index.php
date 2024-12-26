@@ -21,7 +21,7 @@
 						success: function(html){
 						if(html=='true')
 						{
-						$.jGrowl("Welcome to CHMSC Learning Management System", { header: 'Access Granted' });
+						$.jGrowl("Welcome to INFOKOM Learning Management System", { header: 'Access Granted' });
 						var delay = 2000;
 							setTimeout(function(){ window.location = 'dashboard.php'  }, delay);  
 						}
