@@ -1,5 +1,5 @@
 <div class="pull-right">
 		<footer>
-           <p>Programmed by: John Kevin Lorayna BSIS 4-A</p>
+           <p>copyright by: SMK INFOKOM </p>
         <footer>
 </div>
