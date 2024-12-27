@@ -79,6 +79,20 @@
                                 <input type="file" name="excel_file" accept=".xls, .xlsx" class="form-control" required>
                             </div>
                         </div>
+                        <div class="controls">
+                                <select name="class_id" required>
+                                    <option value="">Pilih Kelas</option>
+                                    <?php
+                                    include('dbcon.php');
+                                    $stmt = $conn->prepare("SELECT class_id, class_name FROM class ORDER BY class_name");
+                                    $stmt->execute();
+                                    $result = $stmt->get_result();
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo '<option value="' . htmlspecialchars($row['class_id']) . '">' . htmlspecialchars($row['class_name']) . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
                     </div>
 
                     <div class="control-group">
