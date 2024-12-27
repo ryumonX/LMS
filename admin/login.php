@@ -8,6 +8,8 @@ $password = $_POST['password'];
 $username = mysqli_real_escape_string($conn, $username);
 $password = mysqli_real_escape_string($conn, $password);
 
+$password = md5($password);
+
 $query = mysqli_query($conn, "SELECT * FROM users WHERE username='$username' AND password='$password'") or die(mysqli_error($conn));
 $count = mysqli_num_rows($query);
 $row = mysqli_fetch_array($query);

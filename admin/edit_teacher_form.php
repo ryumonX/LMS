@@ -23,7 +23,7 @@
                                 $row_teacher = mysqli_fetch_array($query_teacher);
                                 ?>
                                 <option value="<?php echo $row_teacher['department_id']; ?>">
-                                    <?php echo $row_teacher['department_name']; ?>
+                                    <?php echo $row_teacher['department_name'] ?? ''; ?>
                                 </option>
                                 <?php
                                 // Ambil daftar semua department
@@ -47,7 +47,7 @@
                     </div>
                     <div class="control-group">
                         <div class="controls">
-                            <input class="input focused" name="password" id="passwordInput" value="<?php echo $row['password']; ?>" type="password" placeholder="Password" required>
+                            <input class="input focused" name="password" id="passwordInput" type="password" placeholder="Enter New Password" >
                         </div>
                     </div>
                     <div class="control-group">
@@ -74,12 +74,21 @@ if (isset($_POST['update'])) {
     $count = mysqli_num_rows($query);
 
     if ($count > 0) {
-        // Data sudah ada
         echo '<script>alert("Data Already Exist");</script>';
     } else {
-        // Update data termasuk password
-        mysqli_query($conn, "UPDATE teacher SET firstname = '$firstname', lastname = '$lastname', department_id = '$department_id', password = '$password' WHERE teacher_id = '$get_id'") or die(mysqli_error($conn));
+        // Cek jika password tidak kosong
+        if (!empty($password)) {
+            // Hash password sebelum menyimpannya
+            $password = md5($password);
+            $query = "UPDATE teacher SET firstname = '$firstname', lastname = '$lastname', department_id = '$department_id', password = '$password' WHERE teacher_id = '$get_id'";
+        } else {
+            // Update tanpa mengubah password
+            $query = "UPDATE teacher SET firstname = '$firstname', lastname = '$lastname', department_id = '$department_id' WHERE teacher_id = '$get_id'";
+        }
+
+        mysqli_query($conn, $query) or die(mysqli_error($conn));
         echo '<script>window.location = "teachers.php";</script>';
     }
 }
+
 ?>

@@ -54,6 +54,8 @@
                             <div class="controls">
                                 <input name="un" type="text" class="form-control" placeholder="ID Number" required>
                             </div>
+                            <small class="text-muted">Password akan dibuat otomatis.</small>
+
                         </div>
                         <div class="control-group">
                             <label>Firstname</label>

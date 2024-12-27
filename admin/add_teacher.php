@@ -66,6 +66,7 @@ if (isset($_POST['save'])) {
     $department_id = $_POST['department'];
     $username = rand(1000, 9999); // Generate username with 4 random digits
     $password = str_pad(rand(0, 999999), 6, "0", STR_PAD_LEFT); // Generate 6-digit random password
+    $password_hashed = md5($password); 
 
     $query = mysqli_query($conn, "SELECT * FROM teacher WHERE firstname = '$firstname' AND lastname = '$lastname'") or die(mysqli_error($conn));
     $count = mysqli_num_rows($query);
@@ -73,8 +74,11 @@ if (isset($_POST['save'])) {
     if ($count > 0) {
         echo '<script>alert("Data Already Exist");</script>';
     } else {
+        // Show the generated password before hashing
+        echo '<script>alert("Teacher added successfully! your password: ' . $password . '");</script>';
+
         mysqli_query($conn, "INSERT INTO teacher (firstname, lastname, username, location, department_id, password)
-                            VALUES ('$firstname', '$lastname', '$username', 'uploads/NO-IMAGE-AVAILABLE.jpg', '$department_id', '$password')")
+                            VALUES ('$firstname', '$lastname', '$username', 'uploads/NO-IMAGE-AVAILABLE.jpg', '$department_id', '$password_hashed')")
         or die(mysqli_error($conn));
 
         echo '<script>window.location = "teachers.php";</script>';

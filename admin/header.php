@@ -10,6 +10,7 @@
 			<link href="bootstrap/css/my_style.css" rel="stylesheet" media="screen">
 			<link href="vendors/easypiechart/jquery.easy-pie-chart.css" rel="stylesheet" media="screen">
 			<link href="assets/styles.css" rel="stylesheet" media="screen">
+			<script src="bootstrap/js/bootstrap.min.js"></script>
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
